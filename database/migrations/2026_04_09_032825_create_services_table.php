@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('services', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        $table->id();
+        $table->string('nama');
+        $table->integer('harga');
+        $table->text('deskripsi')->nullable();
+        $table->string('foto_model')->nullable(); // Untuk menampilkan katalog rambut
+        $table->timestamps();
         });
     }
 

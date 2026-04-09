@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Barber extends Model
 {
-    public function user() {
-    return $this->belongsTo(User::class);
-}
-public function barber() {
-    return $this->belongsTo(Barber::class);
-}
-public function service() {
-    return $this->belongsTo(Service::class);
-}
+    use HasFactory;
+
+    protected $fillable = ['nama', 'spesialisasi', 'is_ready', 'foto'];
+
+    // Satu barber bisa menangani banyak pesanan/booking
+    public function bookings(): HasMany
+    {
+        return $this->hasMany(Booking::class);
+    }
 }

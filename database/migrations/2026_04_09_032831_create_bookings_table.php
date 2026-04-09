@@ -13,18 +13,14 @@ public function up(): void
 {
     Schema::create('bookings', function (Blueprint $table) {
         $table->id();
-        
-        // Menghubungkan ke tabel 'users'
-        $table->foreignId('user_id')->constrained(); 
-        
-        // Menghubungkan ke tabel 'barbers'
-        $table->foreignId('barber_id')->constrained(); 
-        
-        // Menghubungkan ke tabel 'services'
-        $table->foreignId('service_id')->constrained(); 
-
-        $table->dateTime('waktu_booking'); // Tanggal dan jam cukur
-        $table->string('status')->default('pending'); // pending, success, atau canceled
+        $table->string('transaction_id')->unique(); // Untuk nomor struk (Contoh: BRB-100424001)
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->foreignId('barber_id')->constrained()->onDelete('cascade');
+        $table->foreignId('service_id')->constrained()->onDelete('cascade');
+        $table->integer('total_price'); // Harga saat booking dilakukan
+        $table->dateTime('waktu_booking');
+        $table->enum('payment_status', ['unpaid', 'paid'])->default('unpaid'); // Status bayar
+        $table->enum('status', ['pending', 'confirmed', 'completed', 'cancelled'])->default('pending');
         $table->timestamps();
     });
 }
