@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 
 Route::prefix('admin')->group(function () {
     
@@ -42,3 +43,16 @@ Route::get('/list-potongan', function () {
 Route::get('/atur-jadwal', function () {
     return view('aturjadwal');
 })->name('aturjadwal.index');
+=======
+use Laravel\Fortify\Features;
+
+Route::inertia('/', 'dashboard', [
+    'canRegister' => Features::enabled(Features::registration()),
+])->name('home');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::inertia('dashboard', 'dashboard')->name('dashboard');
+});
+
+require __DIR__.'/settings.php';
+>>>>>>> 0a5a29f58d1eb073bb43845033db6a4243d82e1d

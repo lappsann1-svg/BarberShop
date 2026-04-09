@@ -1,6 +1,10 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
+<<<<<<< HEAD
     "name": "laravel/laravel",
+=======
+    "name": "laravel/react-starter-kit",
+>>>>>>> 0a5a29f58d1eb073bb43845033db6a4243d82e1d
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
     "keywords": [
@@ -10,6 +14,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.3",
+<<<<<<< HEAD
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0"
     },
@@ -20,6 +25,23 @@
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
         "phpunit/phpunit": "^12.5.12"
+=======
+        "inertiajs/inertia-laravel": "^3.0",
+        "laravel/fortify": "^1.34",
+        "laravel/framework": "^13.0",
+        "laravel/tinker": "^3.0",
+        "laravel/wayfinder": "^0.1.14"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.24",
+        "laravel/pail": "^1.2.5",
+        "laravel/pint": "^1.27",
+        "laravel/sail": "^1.53",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.9",
+        "pestphp/pest": "^4.4",
+        "pestphp/pest-plugin-laravel": "^4.1"
+>>>>>>> 0a5a29f58d1eb073bb43845033db6a4243d82e1d
     },
     "autoload": {
         "psr-4": {
@@ -39,15 +61,40 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "@php artisan key:generate",
             "@php artisan migrate --force",
+<<<<<<< HEAD
             "npm install --ignore-scripts",
+=======
+            "npm install",
+>>>>>>> 0a5a29f58d1eb073bb43845033db6a4243d82e1d
             "npm run build"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
+<<<<<<< HEAD
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"npm run dev\" --names='server,queue,vite'"
         ],
         "test": [
             "@php artisan config:clear --ansi",
+=======
+            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1 --timeout=0\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite --kill-others"
+        ],
+        "lint": [
+            "pint --parallel"
+        ],
+        "lint:check": [
+            "pint --parallel --test"
+        ],
+        "ci:check": [
+            "Composer\\Config::disableProcessTimeout",
+            "npm run lint:check",
+            "npm run format:check",
+            "npm run types:check",
+            "@test"
+        ],
+        "test": [
+            "@php artisan config:clear --ansi",
+            "@lint:check",
+>>>>>>> 0a5a29f58d1eb073bb43845033db6a4243d82e1d
             "@php artisan test"
         ],
         "post-autoload-dump": [
@@ -55,8 +102,12 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
+<<<<<<< HEAD
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
             "@php artisan boost:update --ansi"
+=======
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+>>>>>>> 0a5a29f58d1eb073bb43845033db6a4243d82e1d
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
@@ -84,6 +135,10 @@
             "php-http/discovery": true
         }
     },
+<<<<<<< HEAD
     "minimum-stability": "stable",
     "prefer-stable": true
+=======
+    "minimum-stability": "stable"
+>>>>>>> 0a5a29f58d1eb073bb43845033db6a4243d82e1d
 }

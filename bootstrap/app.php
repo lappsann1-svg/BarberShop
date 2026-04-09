@@ -1,8 +1,17 @@
 <?php
 
+<<<<<<< HEAD
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+=======
+use App\Http\Middleware\HandleAppearance;
+use App\Http\Middleware\HandleInertiaRequests;
+use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Exceptions;
+use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
+>>>>>>> 0a5a29f58d1eb073bb43845033db6a4243d82e1d
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -11,7 +20,17 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+<<<<<<< HEAD
         //
+=======
+        $middleware->encryptCookies(except: ['appearance', 'sidebar_state']);
+
+        $middleware->web(append: [
+            HandleAppearance::class,
+            HandleInertiaRequests::class,
+            AddLinkHeadersForPreloadedAssets::class,
+        ]);
+>>>>>>> 0a5a29f58d1eb073bb43845033db6a4243d82e1d
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
